@@ -1,0 +1,31 @@
+{
+  "name": "redux-comparison",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/zushenyan/redux-comparison.git",
+  "author": "Andrew Yan <zushenyan@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.1",
+    "express": "^4.15.2",
+    "redux": "^3.6.0",
+    "redux-observable": "^0.14.0",
+    "redux-saga": "^0.14.3",
+    "redux-thunk": "^2.2.0",
+    "rxjs": "^5.2.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.4.0",
+    "babel-preset-latest": "^6.22.0",
+    "babel-preset-stage-0": "^6.22.0",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "nodemon": "^1.11.0",
+    "webpack": "^2.2.1"
+  },
+  "scripts": {
+    "dev": "webpack --watch --config webpack.config.js",
+    "server": "nodemon ./server/index.js"
+  }
+}
