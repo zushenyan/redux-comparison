@@ -26,6 +26,7 @@
   },
   "scripts": {
     "dev": "webpack --watch --config webpack.config.js",
+    "build": "webpack -p --config webpack.config.js",
     "server": "nodemon ./server/index.js"
   }
 }
