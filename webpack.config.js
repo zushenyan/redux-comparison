@@ -5,9 +5,9 @@ const PATHS = {};
 module.exports = {
   devtool: "eval",
   entry: {
-    example1: "./client/example1.js",
-    example2: "./client/example2.js",
-    example3: "./client/example3.js",
+    "redux-thunk":      "./client/redux-thunk/index.js",
+    "redux-saga":       "./client/redux-saga/index.js",
+    "redux-observable": "./client/redux-observable/index.js",
   },
   output: {
     path: "./public",

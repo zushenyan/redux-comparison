@@ -5,20 +5,20 @@ const app = express();
 
 app.use(express.static(path.resolve("public")));
 
-app.get("/example1", (req, res) => {
-  res.sendFile(path.resolve("public/example1.html"));
+app.get("/redux-thunk", (req, res) => {
+  res.sendFile(path.resolve("public/redux-thunk.html"));
 });
 
-app.get("/example2", (req, res) => {
-  res.sendFile(path.resolve("public/example2.html"));
+app.get("/redux-saga", (req, res) => {
+  res.sendFile(path.resolve("public/redux-saga.html"));
 });
 
-app.get("/example3", (req, res) => {
-  res.sendFile(path.resolve("public/example3.html"));
+app.get("/redux-observable", (req, res) => {
+  res.sendFile(path.resolve("public/redux-observable.html"));
 });
 
 app.get("/api", (req, res) => {
-  res.sendFile(path.resolve("public/photo-big.jpg"));
+  res.sendFile(path.resolve("public/dummy.txt"));
 });
 
 const PORT = 8082;
