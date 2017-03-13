@@ -38,7 +38,7 @@ const reducer = (state = INIT_STATE, action) => {
     case actions.FETCH_DATA_ABORT:
       return {
         ...state,
-        fetchState: "done",
+        fetchState: "abort",
         xhr:        action.payload.xhr
       };
     default:

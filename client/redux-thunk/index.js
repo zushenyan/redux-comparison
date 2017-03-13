@@ -27,5 +27,5 @@ store.subscribe(() => {
     cancelButton.setAttribute("disabled", true);
   }
 
-  state.innerHTML   = fetchState;
+  state.innerHTML = fetchState;
 });

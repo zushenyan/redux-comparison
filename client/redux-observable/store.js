@@ -1,14 +1,15 @@
 import { createStore, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
+import { createEpicMiddleware } from "redux-observable";
 import createLogger from "redux-logger";
 
+import rootEpic from "./epics.js";
 import reducer from "../reducer.js";
 
 const store = createStore(
   reducer,
   undefined,
   applyMiddleware(
-    thunk,
+    createEpicMiddleware(rootEpic),
     createLogger()
   )
 );

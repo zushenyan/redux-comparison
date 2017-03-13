@@ -3,10 +3,10 @@ const path = require("path");
 const PATHS = {};
 
 module.exports = {
-  devtool: "eval",
+  devtool: "eval-source-map",
   entry: {
     "redux-thunk":      "./client/redux-thunk/index.js",
-    "redux-saga":       "./client/redux-saga/index.js",
+    "redux-saga":       ["babel-polyfill", "./client/redux-saga/index.js"],
     "redux-observable": "./client/redux-observable/index.js",
   },
   output: {

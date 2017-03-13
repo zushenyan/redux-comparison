@@ -1,4 +1,4 @@
-import * as actions from "./actions.js";
+import * as actions from "../actions.js";
 import * as api from "../api.js";
 
 export const fetchData = () => (dispatch, state) => {
