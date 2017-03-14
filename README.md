@@ -1,6 +1,6 @@
 # redux-event-stream-comparison
 
-A comparison between `redux-thunk`, `redux-saga` and `redux-observable` when handling complicated scenario like listening to `progress` or `abort` event in Ajax.
+A comparison between `redux-thunk`, `redux-saga` and `redux-observable` when handling complicated scenario like listening to external events `progress` or `abort` in Ajax.
 
 # How to run
 Assume you have installed `yarn` and know basic about `webpack`.
