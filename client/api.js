@@ -2,7 +2,7 @@ export const fetchData = ({onLoadStart, onLoad, onProgress, onError, onAbort}) =
   const xhr = new XMLHttpRequest();
   xhr.addEventListener("loadStart", onLoadStart);
   xhr.addEventListener("load", (e) => {
-    const firstChar = e.target.status[0];
+    const firstChar = e.target.status.toString()[0];
     if(firstChar === "4" || firstChar === "5") { onError(e); }
     else { onLoad(e); }
   });

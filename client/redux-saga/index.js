@@ -12,7 +12,7 @@ fetchButton.addEventListener("click", (e) => {
 });
 
 cancelButton.addEventListener("click", (e) => {
-  // store.dispatch(adventures.fetchDataAbort());
+  store.dispatch(sagas.fetchDataAbort());
 });
 
 store.subscribe(() => {

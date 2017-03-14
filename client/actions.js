@@ -1,4 +1,4 @@
-export const createAction = (type) => (payload) => ({ type, payload });
+import { createAction } from "./utils.js";
 
 export const FETCH_DATA_START   = "fetch data start";
 export const FETCH_DATA_LOADING = "fetch data loading";

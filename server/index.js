@@ -18,6 +18,8 @@ app.get("/redux-observable", (req, res) => {
 });
 
 app.get("/api", (req, res) => {
+  // comment out the following code if you want to try out errors.
+  // res.status(404).send("file not found");
   res.sendFile(path.resolve("public/dummy.txt"));
 });
 
