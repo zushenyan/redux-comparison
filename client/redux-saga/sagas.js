@@ -23,8 +23,10 @@ export const createFetchDataChannel = () => {
         emit(END);
       },
       onAbort:     (e) => {
-        emit(actions.fetchDataAbort({xhr}));
-        emit(END);
+        setTimeout(() => {
+          emit(actions.fetchDataAbort({xhr}));
+          emit(END);
+        }, 0);
       }
     });
     xhr.send();
