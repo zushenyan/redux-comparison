@@ -1,45 +1,51 @@
+import _ from "lodash";
 import * as actions from "./actions.js";
 
 const INIT_STATE = {
-  fetchState: "",
+  fetchState: "start",
   data:       {},
   error:      {},
-  xhr:        null
+  abort:      () => {},
+  event:      {}
 };
 
 const reducer = (state = INIT_STATE, action) => {
+  // for unknown reason it won't clone while in object merging,
+  // so I have to clone here.
+  const clonedAction = _.cloneDeep(action);
   switch(action.type){
     case actions.FETCH_DATA_START:
       return {
         ...INIT_STATE,
-        xhr:        action.payload.xhr
+        abort: clonedAction.payload.abort,
+        event: clonedAction.payload.event
       };
     case actions.FETCH_DATA_LOADING:
       return {
         ...state,
         fetchState: "loading",
-        data:       action.payload.data,
-        xhr:        action.payload.xhr
+        data:       clonedAction.payload.data,
+        event:      clonedAction.payload.event
       };
     case actions.FETCH_DATA_DONE:
       return {
         ...state,
         fetchState: "done",
-        data:       action.payload.data,
-        xhr:        action.payload.xhr
+        data:       clonedAction.payload.data,
+        event:      clonedAction.payload.event
       };
     case actions.FETCH_DATA_FAIL:
       return {
         ...state,
         fetchState: "fail",
-        error:      action.payload.error,
-        xhr:        action.payload.xhr
+        error:      clonedAction.payload.error,
+        event:      clonedAction.payload.event
       };
     case actions.FETCH_DATA_ABORT:
       return {
         ...state,
         fetchState: "abort",
-        xhr:        action.payload.xhr
+        event:      clonedAction.payload.event
       };
     default:
       return state;

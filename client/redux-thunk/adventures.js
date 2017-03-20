@@ -3,16 +3,16 @@ import * as api from "../api.js";
 
 export const fetchData = () => (dispatch, state) => {
   const xhr = api.fetchData({
-    onLoadStart: (e) => dispatch(actions.fetchDataStart({xhr})),
-    onLoad:      (e) => dispatch(actions.fetchDataDone({data: e.target.response, xhr})),
-    onProgress:  (e) => dispatch(actions.fetchDataLoading({data: e.target.response, xhr})),
-    onError:     (e) => dispatch(actions.fetchDataFail({error: e.target.response, xhr})),
-    onAbort:     (e) => dispatch(actions.fetchDataAbort({xhr}))
+    onLoadStart: (event) => dispatch(actions.fetchDataStart({abort: xhr.abort.bind(xhr), event})),
+    onLoad:      (event) => dispatch(actions.fetchDataDone({data: event.target.response, event})),
+    onProgress:  (event) => dispatch(actions.fetchDataLoading({data: event.target.response, event})),
+    onError:     (event) => dispatch(actions.fetchDataFail({error: event.target.response, event})),
+    onAbort:     (event) => dispatch(actions.fetchDataAbort({event}))
   });
   xhr.send();
 };
 
 export const fetchDataAbort = () => (dispatch, getState) => {
-  const { xhr } = getState();
-  xhr && xhr.abort();
+  const { abort } = getState();
+  abort();
 };

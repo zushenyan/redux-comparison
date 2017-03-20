@@ -8,6 +8,7 @@
   "dependencies": {
     "cors": "^2.8.1",
     "express": "^4.15.2",
+    "lodash": "^4.17.4",
     "redux": "^3.6.0",
     "redux-observable": "^0.14.0",
     "redux-saga": "^0.14.3",
@@ -20,15 +21,20 @@
     "babel-polyfill": "^6.23.0",
     "babel-preset-latest": "^6.22.0",
     "babel-preset-stage-0": "^6.22.0",
-    "chai": "^3.5.0",
-    "mocha": "^3.2.0",
     "nodemon": "^1.11.0",
     "redux-logger": "^2.8.2",
+    "redux-mock-store": "^1.2.2",
     "webpack": "^2.2.1"
   },
   "scripts": {
     "dev": "webpack --watch --config webpack.config.js",
     "build": "webpack -p --config webpack.config.js",
-    "server": "nodemon ./server/index.js"
+    "server": "nodemon ./server/index.js",
+    "test": "jest --watch"
+  },
+  "jest": {
+    "roots": [
+      "<rootDir>/specs"
+    ]
   }
 }

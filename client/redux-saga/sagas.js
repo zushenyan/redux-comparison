@@ -12,19 +12,31 @@ export const fetchDataAbort        = createAction(FETCH_DATA_ABORT_SAGA);
 export const createFetchDataChannel = () => {
   return eventChannel(emit => {
     const xhr = api.fetchData({
-      onLoadStart: (e) => emit(actions.fetchDataStart({xhr})),
-      onLoad:      (e) => {
-        emit(actions.fetchDataDone({data: e.target.response, xhr}));
-        emit(END);
-      },
-      onProgress:  (e) => emit(actions.fetchDataLoading({data: e.target.response, xhr})),
-      onError:     (e) => {
-        emit(actions.fetchDataFail({error: e.target.response, xhr}));
-        emit(END);
-      },
-      onAbort:     (e) => {
+      onLoadStart: (event) => {
         setTimeout(() => {
-          emit(actions.fetchDataAbort({xhr}));
+          emit(actions.fetchDataStart({abort: xhr.abort.bind(xhr), event}));
+        }, 0);
+      },
+      onLoad:      (event) => {
+        setTimeout(() => {
+          emit(actions.fetchDataDone({data: event.target.response, event}));
+          emit(END);
+        }, 0);
+      },
+      onProgress:  (event) => {
+        setTimeout(() => {
+          emit(actions.fetchDataLoading({data: event.target.response, event}));
+        }, 0);
+      },
+      onError:     (event) => {
+        setTimeout(() => {
+          emit(actions.fetchDataFail({error: event.target.response, event}));
+          emit(END);
+        }, 0);
+      },
+      onAbort:     (event) => {
+        setTimeout(() => {
+          emit(actions.fetchDataAbort({event}));
           emit(END);
         }, 0);
       }
@@ -48,8 +60,8 @@ export function * fetchDataSaga() {
 }
 
 export function * fetchDataAbortSaga() {
-  const xhr = yield select(state => state.xhr);
-  xhr && xhr.abort();
+  const abort = yield select(state => state.abort);
+  abort();
 }
 
 export function * watchFetchDataSaga() {

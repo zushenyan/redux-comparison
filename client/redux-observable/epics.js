@@ -15,15 +15,15 @@ export const fetchDataEpic = (action$, store) => {
     .mergeMap(action =>
       Rx.Observable.create(observer => {
         const xhr = api.fetchData({
-          onLoadStart: (e) => observer.next(actions.fetchDataStart({xhr})),
-          onLoad:      (e) => {
-            observer.next(actions.fetchDataDone({data: e.target.response, xhr}))
+          onLoadStart: (event) => observer.next(actions.fetchDataStart({abort: xhr.abort.bind(xhr), event})),
+          onLoad:      (event) => {
+            observer.next(actions.fetchDataDone({data: event.target.response, event}))
             observer.complete();
           },
-          onProgress:  (e) => observer.next(actions.fetchDataLoading({data: e.target.response, xhr})),
-          error:       (e) => observer.error(actions.fetchDataFail({error: e.target.response, xhr})),
-          onAbort:     (e) => {
-            observer.next(actions.fetchDataAbort({xhr}));
+          onProgress:  (event) => observer.next(actions.fetchDataLoading({data: event.target.response, event})),
+          error:       (event) => observer.error(actions.fetchDataFail({error: event.target.response, event})),
+          onAbort:     (event) => {
+            observer.next(actions.fetchDataAbort({event}));
             observer.complete();
           }
         });
@@ -36,8 +36,8 @@ export const fetchDataAbortEpic = (action$, store) => {
   return action$.ofType(FETCH_DATA_ABORT_EPIC)
     .mergeMap(action =>
       Rx.Observable.create(observer => {
-        const { xhr } = store.getState();
-        xhr && xhr.abort();
+        const { abort } = store.getState();
+        abort();
         observer.complete();
       })
     );
